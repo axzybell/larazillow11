@@ -17,4 +17,8 @@
     .btn-primary {
         @apply bg-indigo-600 hover:bg-indigo-500 text-white font-medium p-2 rounded-md
     }
+
+    .slider {
+        @apply w-full h-4 bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-700
+    }
 }
