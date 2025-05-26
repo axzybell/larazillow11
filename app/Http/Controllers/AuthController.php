@@ -25,10 +25,15 @@ class AuthController extends Controller
         //to avoid so called session fixation attack
         $request->session()->regenerate();
 
-        return redirect()->intended();
+        return redirect()->intended('/listing');
     }
 
-    public function destroy() {
+    public function destroy(Request $request) {
+        Auth::logout();
 
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
+        return redirect()->route('listing.index');
     }
 }

@@ -20,7 +20,7 @@
     </div>
 
     <div>
-      <Link :href="route('listing.destroy', {listing: listings.id})" method="DELETE" as="button">
+      <Link :href="route('listing.destroy', {listing: listings.id})" method="DELETE" as="button" class="cursor-pointer">
         Delete
       </Link>
     </div>
