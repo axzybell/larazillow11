@@ -7,11 +7,20 @@
     }
 
     .input {
-        @apply dark:bg-gray-100 block w-full p-2 rounded-md shadow-sm border border-gray-300 dark:border-gray-600 text-gray-500
+        @apply dark:bg-gray-100 block w-full p-2 rounded-md shadow-sm border border-gray-300
+                dark:border-gray-600 text-gray-500
     }
 
     .input-error {
         @apply text-sm text-red-500 dark:text-red-400
+    }
+
+    .filter-input {
+        @apply h-10 px-4 py-2 text-sm text-gray-700 dark:text-gray-200
+                bg-white dark:bg-gray-800
+                border border-gray-300 dark:border-gray-600
+                rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500
+                transition-all;
     }
 
     .btn-primary {
@@ -21,4 +30,10 @@
     .slider {
         @apply w-full h-4 bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-700
     }
+
+    .btn-normal {
+        @apply bg-gray-600 hover:bg-gray-500 text-white font-medium p-2 rounded-md
+    }
+
+
 }
