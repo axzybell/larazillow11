@@ -119,9 +119,6 @@ class ListingController extends Controller
      */
     public function destroy(Listing $listing)
     {
-        $listing->delete();
-
-        return redirect()->back()
-            ->with('success', 'Listing has deleted!');
+        //
     }
 }
