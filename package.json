@@ -21,6 +21,7 @@
     "dependencies": {
         "@inertiajs/vue3": "^2.0.11",
         "@tailwindcss/vite": "^4.1.7",
+        "nprogress": "^0.2.0",
         "tailwindcss": "^4.1.7",
         "ziggy-js": "^2.5.3"
     }
