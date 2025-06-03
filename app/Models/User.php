@@ -52,4 +52,11 @@ class User extends Authenticatable
             'by_user_id'
         );
     }
+
+    public function offers(): HasMany {
+        return $this->hasMany(
+            Offer::class,
+            'bidder_id'
+        );
+    }
 }
