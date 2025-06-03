@@ -1,7 +1,7 @@
 import { ref, computed } from 'vue'
 
 export function usePasswordStrength(passwordRef) {
-  const specialCharRegex = /[<>?#^*!@()]/i
+  const specialCharRegex = /[<>?#^*!@()]/ // removed `i` as it's unnecessary
 
   const hasSpecialChars = computed(() =>
     specialCharRegex.test(passwordRef.value || ''),
@@ -9,18 +9,22 @@ export function usePasswordStrength(passwordRef) {
 
   const passwordStrengthBar = ref('bg-gray-300 w-0')
 
-  const checkPasswordStrength = () => {
+  const isStrongPassword = computed(() => {
     const pwd = passwordRef.value || ''
-    const hasNumber = /\d/.test(pwd)
-    const hasUpper = /[A-Z]/.test(pwd)
-    const len = pwd.length
-    const hasSpecial = hasSpecialChars.value
+    return (
+      pwd.length >= 8 &&
+      /\d/.test(pwd) &&
+      /[A-Z]/.test(pwd) &&
+      hasSpecialChars.value
+    )
+  })
 
-    if (len >= 8 && hasNumber && hasUpper && hasSpecial) {
+  const checkPasswordStrength = () => {
+    if (isStrongPassword.value) {
       passwordStrengthBar.value = 'bg-green-500 w-full'
-    } else if (len >= 6 && (hasNumber || hasSpecial)) {
+    } else if (passwordRef.value?.length >= 6) {
       passwordStrengthBar.value = 'bg-yellow-400 w-2/3'
-    } else if (len > 0) {
+    } else if (passwordRef.value?.length > 0) {
       passwordStrengthBar.value = 'bg-red-500 w-1/3'
     } else {
       passwordStrengthBar.value = 'bg-gray-300 w-0'
@@ -30,6 +34,7 @@ export function usePasswordStrength(passwordRef) {
   return {
     hasSpecialChars,
     passwordStrengthBar,
+    isStrongPassword,
     checkPasswordStrength,
   }
 }

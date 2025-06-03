@@ -52,7 +52,13 @@
       </div>
 
       <div class="mt-4">
-        <button class="btn-primary w-full" type="submit">Create Account</button>
+        <button
+          class="w-full btn-primary disabled:opacity-25 disabled:cursor-not-allowed"
+          type="submit"
+          :disabled="!isStrongPassword || !passwordsMatch"
+        >
+          Create Account
+        </button>
         <div class="mt-2 text-center">
           <Link :href="route('login')" class="text-sm text-gray-500">
             Already have an account? Click here!
@@ -85,7 +91,9 @@ const {
   hasSpecialChars,
   passwordStrengthBar,
   checkPasswordStrength,
+  isStrongPassword,
 } = usePasswordStrength(passwordRef)
+
 
 // Run strength check whenever password changes
 watch(passwordRef, () => {
