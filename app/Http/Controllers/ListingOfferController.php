@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 class ListingOfferController extends Controller
 {
     public function store(Listing $listing, Request $request) {
+        $this->authorize('view', $listing);
         $listing->offers()->save(
             Offer::make(
                 $request->validate([
