@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Listing;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
 
 class ListingController extends Controller
@@ -41,10 +42,14 @@ class ListingController extends Controller
     {
         // Gate::authorize('show', Listing::class);
         $listing->load(['images']);
+        $offer = !Auth::user() ?
+            null : $listing->offers()->ByMe()->first();
+
         return inertia(
             'Listing/Show',
             [
-                'listing' => $listing
+                'listing' => $listing,
+                'offerMade' => $offer
             ]
         );
     }
