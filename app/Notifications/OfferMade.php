@@ -36,8 +36,9 @@ class OfferMade extends Notification
      */
     public function toMail(object $notifiable): MailMessage
     {
+        $formattedAmount = 'RM ' . number_format($this->offer->amount, 2);
         return (new MailMessage)
-                    ->line("New Offer ({$this->offer->amount}) was made for your listing")
+                    ->line("New Offer ({$formattedAmount}) was made for your listing")
                     ->action(
                         'See Your Listing',
                         route('realtor.listing.show', ['listing' => $this->offer->listing_id])
