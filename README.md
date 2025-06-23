@@ -9,7 +9,7 @@ A personal project, built using Laravel, Vue.js, and Inertia.js.
 - Responsive UI with Tailwind CSS
 
 ## Tech Stack
-- Laravel 11
+- Laravel 12
 - Vue.js 3
 - Inertia.js
 - MySQL
