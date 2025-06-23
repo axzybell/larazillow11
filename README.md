@@ -5,7 +5,7 @@ A personal project, built using Laravel, Vue.js, and Inertia.js.
 ## Features
 - Property listing and filtering
 - User authentication (login/register)
-- Admin CRUD panel
+- Admin/Realtor CRUD panel
 - Responsive UI with Tailwind CSS
 
 ## Tech Stack
