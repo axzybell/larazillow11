@@ -12,7 +12,8 @@ A personal project, built using Laravel, Vue.js, and Inertia.js.
 - Laravel 12
 - Vue.js 3
 - Inertia.js
-- MySQL
+- MySQL (Docker)
+- Mailhog (Docker)
 
 ## Getting Started
 1. Clone the repo
