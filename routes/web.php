@@ -20,9 +20,7 @@ use Illuminate\Support\Facades\Route;
 //     return inertia('Index/Index');
 // });
 
-Route::get('/', [IndexController::class, 'index']);
-Route::get('/hello', [IndexController::class, 'show'])
-    ->middleware('auth');
+Route::get('/', [ListingController::class, 'index']);
 
 Route::resource('listing', ListingController::class)
     ->only(['index', 'show']);

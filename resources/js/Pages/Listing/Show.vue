@@ -1,9 +1,35 @@
 <template>
   <div class="flex flex-col-reverse md:grid md:grid-cols-12 gap-4">
-    <Box v-if="listing.images.length" class="md:col-span-7 flex items-center w-full">
-      <div class="grid grid-cols-2 gap-1">
-        <img v-for="image in listing.images" :key="image.id" :src="image.src" />
+    <Box v-if="listing.images.length" class="md:col-span-7 flex flex-col items-center w-full">
+      <div class="relative w-full max-w-lg h-[500px] flex items-center justify-center group">
+        <img
+          :key="listing.images[currentImageIndex].id"
+          :src="listing.images[currentImageIndex].src"
+          class="w-full h-full max-w-[90%] max-h-[90%] object-contain rounded"
+        />
+
+        <!-- Left -->
+        <button
+          class="absolute left-0 top-1/2 transform -translate-y-1/2 bg-transparent text-white text-3xl px-3 py-1 opacity-0 group-hover:opacity-100 transition-opacity"
+          :disabled="currentImageIndex === 0"
+          @click="prevImage"
+        >
+          ‹
+        </button>
+
+        <!-- Right -->
+        <button
+          class="absolute right-0 top-1/2 transform -translate-y-1/2 bg-transparent text-white text-3xl px-3 py-1 opacity-0 group-hover:opacity-100 transition-opacity"
+          :disabled="currentImageIndex === listing.images.length - 1"
+          @click="nextImage"
+        >
+          ›
+        </button>
       </div>
+
+      <p class="mt-2 text-sm text-gray-500">
+        Image {{ currentImageIndex + 1 }} of {{ listing.images.length }}
+      </p>
     </Box>
 
     <EmptyState v-else class="md:col-span-7 flex items-center w-full">
@@ -94,6 +120,7 @@ import EmptyState from '@/Components/UI/EmptyState.vue'
 
 const interestRate = ref(2.5)
 const duration = ref(25)
+const currentImageIndex = ref(0)
 
 const props = defineProps({
   listing: Object,
@@ -110,4 +137,16 @@ const page = usePage()
 const user = computed(
   () => page.props.user,
 )
+
+const nextImage = () => {
+  if (currentImageIndex.value < props.listing.images.length - 1) {
+    currentImageIndex.value++
+  }
+}
+
+const prevImage = () => {
+  if (currentImageIndex.value > 0) {
+    currentImageIndex.value--
+  }
+}
 </script>
